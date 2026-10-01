@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileModal = document.getElementById('profile-modal');
     const closeProfileModal = document.getElementById('close-profile-modal');
     const savePaymentBtn = document.getElementById('save-payment-btn');
+    const logoutBtn = document.getElementById('logout-btn');
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -32,6 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <img src="${userPhoto}" alt="PP">
                 <span>${userName}</span>
             `;
+
+            // Load data tersimpan di localStorage khusus akun ini
+            const savedData = JSON.parse(localStorage.getItem(`zhee_user_${user.uid}`)) || {};
+            document.getElementById('modal-email').value = user.email;
+            document.getElementById('input-username').value = savedData.username || userName;
+            document.getElementById('input-ewallet').value = savedData.ewallet || '';
 
             if (user.email === OWNER_EMAIL) {
                 if (floatingAdminBtn) floatingAdminBtn.style.display = 'flex';
@@ -49,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     userProfileBtn.addEventListener('click', () => {
         if (auth.currentUser) {
-            // Buka modal edit profil & pembayaran
             if(profileModal) profileModal.classList.add('show');
         } else {
             signInWithPopup(auth, provider).catch((error) => {
@@ -67,13 +73,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(savePaymentBtn) {
         savePaymentBtn.addEventListener('click', () => {
-            const dana = document.getElementById('input-dana').value;
-            const rek = document.getElementById('input-rek').value;
-            localStorage.setItem('zhee_dana', dana);
-            localStorage.setItem('zhee_rek', rek);
+            const user = auth.currentUser;
+            if (!user) return;
+
+            const username = document.getElementById('input-username').value.trim();
+            const ewallet = document.getElementById('input-ewallet').value.trim();
+
+            if(!username) {
+                alert("Username tidak boleh kosong!");
+                return;
+            }
+
+            // Simulasi Cek Username Unik Global
+            const existingUserUid = localStorage.getItem(`zhee_uname_${username}`);
+            if(existingUserUid && existingUserUid !== user.uid) {
+                alert("Username telah ada, silahkan buat username lain!");
+                return;
+            }
+
+            // Simpan permanen ke localStorage aman terikat user UID
+            localStorage.setItem(`zhee_uname_${username}`, user.uid);
+            localStorage.setItem(`zhee_user_${user.uid}`, JSON.stringify({ username, ewallet }));
+
             profileModal.classList.remove('show');
-            if(window.showNotification) window.showNotification('Data pembayaran berhasil disimpan!');
+            if(window.showNotification) window.showNotification('Profil & e-Wallet berhasil disimpan!');
+        });
+    }
+
+    if(logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                profileModal.classList.remove('show');
+                if(window.showNotification) window.showNotification('Berhasil keluar akun.');
+            });
         });
     }
 });
-
