@@ -15,7 +15,7 @@
         <span id="island-text">Sistem Fastour siap digunakan</span>
     </div>
 
-    <!-- Header Kapsul dengan Logo ZS dan PP Bulat -->
+    <!-- Header Kapsul -->
     <div class="capsule-header-wrapper">
         <header class="capsule-header">
             <div class="logo-area">
@@ -35,7 +35,7 @@
 
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-    <!-- Sidebar dengan Indikator Status & Klaim Win -->
+    <!-- Sidebar Menu -->
     <div class="sidebar" id="sidebar">
         <h3>Navigasi Menu</h3>
         <ul class="sidebar-menu">
@@ -93,29 +93,41 @@
         </div>
     </div>
 
-    <!-- Modal Profil & Pembayaran Pemenang -->
+    <!-- Modal Profil & e-Wallet -->
     <div class="profile-modal-overlay" id="profile-modal">
         <div class="profile-modal-card">
-            <h3>Atur Akun & Pembayaran WD</h3>
+            <h3>Atur Akun & e-Wallet WD</h3>
             <div class="form-group">
-                <label>Nomor DANA / OVO / GOPAY</label>
-                <input type="text" class="form-input" id="input-dana" placeholder="Contoh: 081234567890">
+                <label>Email Akun</label>
+                <input type="text" class="form-input" id="modal-email" disabled style="opacity: 0.6;">
             </div>
             <div class="form-group">
-                <label>Nomor Rekening / Bank</label>
-                <input type="text" class="form-input" id="input-rek" placeholder="BCA / Mandiri / dll">
+                <label>Username Unik</label>
+                <input type="text" class="form-input" id="input-username" placeholder="Masukkan username unik">
+            </div>
+            <div class="form-group">
+                <label>Nomor e-Wallet (DANA / OVO / GoPay)</label>
+                <input type="text" class="form-input" id="input-ewallet" placeholder="Contoh: 081234567890">
             </div>
             <div class="modal-btn-row">
                 <button class="action-btn" id="save-payment-btn" style="flex: 1;">Simpan</button>
                 <button class="back-mode-btn" id="close-profile-modal" style="flex: 1; margin:0;">Batal</button>
             </div>
+            <button class="logout-btn" id="logout-btn">Keluar Akun (Logout)</button>
         </div>
     </div>
 
     <div class="container">
+        <!-- TAB DASHBOARD HOME -->
         <div class="glass-card active-tab" id="tab-home">
-            <h1>Terminal Utama Fastour CS</h1>
-            <p>Platform resmi layanan turnamen kilat dan manajemen room berbasis sistem transparan.</p>
+            <h1>Zhee Fastour CS</h1>
+            <p>
+                <b>Zhee Fastour CS</b> adalah platform resmi layanan turnamen kilat dan manajemen *room* e-sports yang didirikan resmi pada <b>Est. 2026</b> oleh Zhefanya. Kami berkomitmen untuk menyajikan sistem kompetisi yang 100% transparan, adil, cepat, dan terpercaya bagi seluruh *buyer* dan player setia.
+            </p>
+            <p style="font-size: 0.85rem; color: var(--success); margin-top: 10px;">
+                ✓ Layanan Amanah & Terbukti Cepat<br>
+                ✓ Sistem Otomatis Slot Room & Klaim Win Transparan
+            </p>
         </div>
 
         <!-- TAB FEE 1 -->
@@ -125,7 +137,7 @@
                 <p>Pilih mode pertandingan:</p>
                 <div class="fee-grid">
                     <div class="fee-card" onclick="openRoomList('fee1', 'Mode 1v1')"><h3>Mode 1v1</h3><div class="pool">3K IDR</div><span class="status-badge open" id="fee1-badge">OPEN</span></div>
-                    <div class="fee-card" onclick="openRoomList('fee1', 'Mode 2v2')"><h3>Mode 2v2</h3><div class="pool">3K IDR</div><span class="status-badge open" id="fee1-badge-2">OPEN</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee1', 'Mode 2v2')"><h3>Mode 2v2</h3><div class="pool">3K IDR</div><span class="status-badge open">OPEN</span></div>
                     <div class="fee-card" onclick="openRoomList('fee1', 'Mode 3v3')"><h3>Mode 3v3</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
                     <div class="fee-card" onclick="openRoomList('fee1', 'Mode 4v4')"><h3>Mode 4v4</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
                 </div>
@@ -208,24 +220,28 @@
             </div>
         </div>
 
-        <!-- TAB RULES -->
+        <!-- TAB RULES (Bersih, Hanya Template Skill yang Bisa Disalin) -->
         <div class="glass-card" id="tab-rules">
             <h1>Rules FT CS By Zhefanya</h1>
             <p>Harap baca dan patuhi seluruh peraturan di bawah ini sebelum bertanding.</p>
-            <div class="rules-card-block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:16px; border-radius:12px; margin-bottom:15px;">
+            <div class="rules-card-block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:16px; border-radius:12px; margin-top:15px;">
                 <h3>🐶 RULES PET & AKUN</h3>
-                <p style="font-size:0.85rem; margin-bottom:8px;">Template Skill No Pet (Klik untuk salin):</p>
-                <div class="copy-skill-box" id="skill-template" onclick="copySkillTemplate()" style="background:rgba(0,0,0,0.4); border:1px dashed rgba(99,102,241,0.5); padding:10px; border-radius:8px; font-family:monospace; font-size:0.75rem; color:#818cf8; word-break:break-all; cursor:pointer;">
+                <p style="font-size:0.85rem; margin-bottom:8px;">Template Skill No Pet (Klik kotak untuk salin preset skill):</p>
+                <div class="copy-skill-box" id="skill-template" onclick="copySkillTemplate()" style="background:rgba(0,0,0,0.4); border:1px dashed rgba(99,102,241,0.5); padding:12px; border-radius:8px; font-family:monospace; font-size:0.75rem; color:#818cf8; word-break:break-all; cursor:pointer;">
                     #FF#YnlnZ39yZ359aXNtbXB0eWVtd2JwfnVvcmR/cWd/
                 </div>
             </div>
-            <button class="action-btn" id="copy-rules-btn" style="width:100%;">Salin Semua Rules</button>
         </div>
 
         <!-- TAB KLAIM WIN -->
         <div class="glass-card" id="tab-wd">
             <h1>Klaim Kemenangan (Klaim Win)</h1>
-            <p>Silakan login Google dan pastikan data nomor pembayaran Anda sudah diatur melalui tombol profil di kanan atas.</p>
+            <p>Pastikan nomor e-Wallet Anda sudah disimpan di profil pojok kanan atas agar proses klaim kemenangan langsung cair tanpa input ulang.</p>
+        </div>
+
+        <!-- Footer Copyright -->
+        <div class="footer-copyright">
+            © 2026 Zhee Fastour CS. All rights reserved.
         </div>
     </div>
 
