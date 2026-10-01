@@ -2,7 +2,6 @@
     --bg-color: #0b0f19;
     --card-bg: rgba(17, 24, 39, 0.75);
     --border-glass: rgba(255, 255, 255, 0.08);
-    --accent-glow: rgba(99, 102, 241, 0.25);
     --text-main: #f3f4f6;
     --text-muted: #9ca3af;
     --primary: #6366f1;
@@ -27,7 +26,8 @@ body {
         radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 40%);
     background-attachment: fixed;
-    padding-bottom: 80px;
+    padding-bottom: 90px;
+    overflow-x: hidden;
 }
 
 /* Dynamic Island Notification */
@@ -119,7 +119,7 @@ body {
     gap: 10px;
 }
 
-/* Tombol / Foto Profil Bulat di Pojok Kanan Atas */
+/* User Profile Button Bulat */
 .user-profile-btn {
     background: rgba(99, 102, 241, 0.2);
     border: 1px solid rgba(99, 102, 241, 0.4);
@@ -155,10 +155,7 @@ body {
 
 .sidebar-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
     z-index: 1050;
@@ -171,10 +168,8 @@ body {
 
 .sidebar {
     position: fixed;
-    top: 0;
-    right: -300px;
-    width: 280px;
-    height: 100%;
+    top: 0; right: -300px;
+    width: 280px; height: 100%;
     background: rgba(11, 15, 25, 0.95);
     backdrop-filter: blur(25px);
     border-left: 1px solid var(--border-glass);
@@ -251,7 +246,6 @@ body {
     align-items: center;
 }
 
-/* Indikator Status di Sidebar */
 .mini-badge {
     font-size: 0.65rem;
     padding: 2px 6px;
@@ -343,7 +337,6 @@ p, pre {
 .status-badge.open { background: rgba(16, 185, 129, 0.2); color: var(--success); }
 .status-badge.close { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
 
-/* Tombol Kembali ke Pilih Mode */
 .back-mode-btn {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-glass);
@@ -361,22 +354,15 @@ p, pre {
 /* Floating Admin Button */
 .floating-admin-btn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 55px;
-    height: 55px;
+    bottom: 25px; right: 25px;
+    width: 55px; height: 55px;
     background: var(--primary);
     color: #fff;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.6rem;
-    font-weight: 700;
+    border: none; border-radius: 50%;
+    font-size: 1.6rem; font-weight: 700;
     box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5);
-    cursor: pointer;
-    z-index: 1500;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    cursor: pointer; z-index: 1500;
+    display: none; align-items: center; justify-content: center;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s;
 }
 
@@ -384,18 +370,15 @@ p, pre {
 
 .admin-modal {
     position: fixed;
-    bottom: 95px;
-    right: 25px;
+    bottom: 95px; right: 25px;
     width: 300px;
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(25px);
     border: 1px solid var(--border-glass);
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 20px; padding: 20px;
     z-index: 1500;
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    display: none;
-    opacity: 0;
+    display: none; opacity: 0;
     transform: translateY(15px) scale(0.95);
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -411,26 +394,21 @@ p, pre {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-glass);
     color: var(--text-muted);
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: center;
+    padding: 8px; border-radius: 8px;
+    font-size: 0.75rem; font-weight: 700;
+    cursor: pointer; text-align: center;
 }
 .toggle-btn.active-open { background: rgba(16, 185, 129, 0.2); border-color: var(--success); color: var(--success); }
 .toggle-btn.active-close { background: rgba(239, 68, 68, 0.2); border-color: var(--danger); color: var(--danger); }
 
-/* Modal Profil & Pembayaran */
+/* Modal Profil & e-Wallet */
 .profile-modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.7);
     backdrop-filter: blur(10px);
     z-index: 2500;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    display: none; align-items: center; justify-content: center;
     padding: 20px;
 }
 .profile-modal-overlay.show { display: flex; }
@@ -438,10 +416,8 @@ p, pre {
 .profile-modal-card {
     background: #0f172a;
     border: 1px solid var(--border-glass);
-    width: 100%;
-    max-width: 400px;
-    padding: 24px;
-    border-radius: 20px;
+    width: 100%; max-width: 400px;
+    padding: 24px; border-radius: 20px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.8);
 }
 .profile-modal-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 15px; }
@@ -451,9 +427,25 @@ p, pre {
     width: 100%;
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--border-glass);
-    padding: 10px 14px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 0.85rem;
+    padding: 10px 14px; border-radius: 10px;
+    color: #fff; font-size: 0.85rem;
 }
 .modal-btn-row { display: flex; gap: 10px; margin-top: 15px; }
+.logout-btn {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+    padding: 10px; width: 100%;
+    border-radius: 10px; font-weight: 600;
+    cursor: pointer; margin-top: 10px;
+}
+
+/* Footer Copyright */
+.footer-copyright {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-glass);
+    margin-top: 30px;
+}
