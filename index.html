@@ -9,16 +9,15 @@
 </head>
 <body>
 
-    <!-- Dynamic Island Notification -->
     <div id="dynamic-island">
         <div class="island-dot"></div>
         <span id="island-text">Sistem Fastour siap digunakan</span>
     </div>
 
-    <!-- Header Kapsul -->
     <div class="capsule-header-wrapper">
         <header class="capsule-header">
             <div class="logo-area">
+                <div class="zs-badge">ZS</div>
                 <div class="live-dot"></div>
                 <span>ZHEE FASTOUR CS</span>
             </div>
@@ -29,13 +28,12 @@
         </header>
     </div>
 
-    <!-- Sidebar Drawer Menu dengan Dropdown Book -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <div class="sidebar" id="sidebar">
         <h3>Navigasi Menu</h3>
         <ul class="sidebar-menu">
             <li><button class="tab-btn active" data-target="tab-home">Dashboard</button></li>
-            
-            <!-- Menu Dropdown Book / Jadwal Open -->
             <li>
                 <div class="submenu-toggle" id="book-dropdown-toggle">
                     <span>Jadwal Open / Book</span>
@@ -47,191 +45,88 @@
                     <button class="tab-btn submenu-btn" data-target="tab-fee3">Fee 3 (Pool 9k)</button>
                 </div>
             </li>
-
             <li><button class="tab-btn" data-target="tab-rules">Rules Turnamen</button></li>
             <li><button class="tab-btn" data-target="tab-wd">Klaim Win / WD</button></li>
         </ul>
     </div>
 
-    <!-- Konten Utama -->
+    <button class="floating-admin-btn" id="floating-admin-btn">+</button>
+
+    <div class="admin-modal" id="admin-modal">
+        <h4>Panel Kontrol Admin</h4>
+        <div class="admin-control-group">
+            <label>Status Fee 1 (3K)</label>
+            <select class="admin-select"><option>Open</option><option>Close / Off</option></select>
+        </div>
+        <div class="admin-control-group">
+            <label>Status Fee 2 (6K)</label>
+            <select class="admin-select"><option>Open</option><option>Close / Off</option></select>
+        </div>
+        <div class="admin-control-group">
+            <label>Status Fee 3 (9K)</label>
+            <select class="admin-select"><option>Open</option><option>Close / Off</option></select>
+        </div>
+    </div>
+
     <div class="container">
-        <!-- Tab Home -->
         <div class="glass-card active-tab" id="tab-home">
             <h1>Terminal Utama Fastour CS</h1>
-            <p>
-                Platform resmi layanan turnamen kilat dan manajemen *room* berbasis sistem transparan. Silakan pilih menu di pojok kanan atas untuk melihat daftar room berdasarkan Fee atau membaca peraturan resmi turnamen.
-            </p>
+            <p>Platform resmi layanan turnamen kilat dan manajemen room berbasis sistem transparan.</p>
         </div>
 
-        <!-- Tab Fee 1 -->
         <div class="glass-card" id="tab-fee1">
             <h1>Fee 1 - Poolprize 3K</h1>
-            <p>Pilih mode pertandingan di bawah ini untuk melihat ketersediaan 10 room aktif:</p>
+            <p>Pilih mode pertandingan:</p>
             <div class="fee-grid">
-                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 1v1 Dipilih')">
-                    <h3>Mode 1v1</h3>
-                    <div class="pool">3K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 2v2 Dipilih')">
-                    <h3>Mode 2v2</h3>
-                    <div class="pool">3K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 3v3 Dipilih')">
-                    <h3>Mode 3v3</h3>
-                    <div class="pool">3K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 4v4 Dipilih')">
-                    <h3>Mode 4v4</h3>
-                    <div class="pool">3K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
+                <div class="fee-card" onclick="alert('Mode 1v1 Dipilih')"><h3>Mode 1v1</h3><div class="pool">3K IDR</div><span class="status-badge open">OPEN</span></div>
+                <div class="fee-card" onclick="alert('Mode 2v2 Dipilih')"><h3>Mode 2v2</h3><div class="pool">3K IDR</div><span class="status-badge open">OPEN</span></div>
+                <div class="fee-card"><h3>Mode 3v3</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
+                <div class="fee-card"><h3>Mode 4v4</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
             </div>
         </div>
 
-        <!-- Tab Fee 2 -->
         <div class="glass-card" id="tab-fee2">
             <h1>Fee 2 - Poolprize 6K</h1>
-            <p>Pilih mode pertandingan di bawah ini untuk melihat ketersediaan 10 room aktif:</p>
+            <p>Pilih mode pertandingan:</p>
             <div class="fee-grid">
-                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 1v1 Dipilih')">
-                    <h3>Mode 1v1</h3>
-                    <div class="pool">6K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 2v2 Dipilih')">
-                    <h3>Mode 2v2</h3>
-                    <div class="pool">6K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 3v3 Dipilih')">
-                    <h3>Mode 3v3</h3>
-                    <div class="pool">6K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 4v4 Dipilih')">
-                    <h3>Mode 4v4</h3>
-                    <div class="pool">6K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
+                <div class="fee-card"><h3>Mode 1v1</h3><div class="pool">6K IDR</div><span class="status-badge open">OPEN</span></div>
+                <div class="fee-card"><h3>Mode 2v2</h3><div class="pool">6K IDR</div><span class="status-badge open">OPEN</span></div>
+                <div class="fee-card"><h3>Mode 3v3</h3><div class="pool">6K IDR</div><span class="status-badge close">CLOSE</span></div>
+                <div class="fee-card"><h3>Mode 4v4</h3><div class="pool">6K IDR</div><span class="status-badge close">CLOSE</span></div>
             </div>
         </div>
 
-        <!-- Tab Fee 3 -->
         <div class="glass-card" id="tab-fee3">
             <h1>Fee 3 - Poolprize 9K</h1>
-            <p>Pilih mode pertandingan di bawah ini untuk melihat ketersediaan 10 room aktif:</p>
+            <p>Pilih mode pertandingan:</p>
             <div class="fee-grid">
-                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 1v1 Dipilih')">
-                    <h3>Mode 1v1</h3>
-                    <div class="pool">9K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 2v2 Dipilih')">
-                    <h3>Mode 2v2</h3>
-                    <div class="pool">9K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 3v3 Dipilih')">
-                    <h3>Mode 3v3</h3>
-                    <div class="pool">9K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
-                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 4v4 Dipilih')">
-                    <h3>Mode 4v4</h3>
-                    <div class="pool">9K IDR</div>
-                    <span>10 Room Tersedia</span>
-                </div>
+                <div class="fee-card"><h3>Mode 1v1</h3><div class="pool">9K IDR</div><span class="status-badge open">OPEN</span></div>
+                <div class="fee-card"><h3>Mode 2v2</h3><div class="pool">9K IDR</div><span class="status-badge open">OPEN</span></div>
+                <div class="fee-card"><h3>Mode 3v3</h3><div class="pool">9K IDR</div><span class="status-badge close">CLOSE</span></div>
+                <div class="fee-card"><h3>Mode 4v4</h3><div class="pool">9K IDR</div><span class="status-badge close">CLOSE</span></div>
             </div>
         </div>
 
-        <!-- Tab Rules -->
         <div class="glass-card" id="tab-rules">
             <h1>Rules FT CS by Zhefanya</h1>
             <div class="rules-box" id="rules-text">✨ RULES FT CS BY ZHEFANYA ✨
-
 — FORMAT ROOM —
 ✦ MODE : CRAZY STORE
 ✦ DEFAULT COIN : 1.500
 ✦ ROUND : 13
 ✦ AMMO TERBATAS : OFF
-✦ DAMAGE SAAT JATUH : ON
-✦ AIRDROP : OFF
-✦ ATRIBUT SENJATA : ON
-✦ LOADOUT : OFF
-✦ BATAS THROWABLE : OFF
-
-— RULES PET —
-✦ PET : FALCO & PANTHER ONLY
-✦ SELAIN PET DI ATAS WAJIB DIKOSONGKAN!
-✦ TEMPLATE SKILL NO PET :
-#FF#YnlnZ39yZ359aXNtbXB0eWVtd2JwfnVvcmR/cWd/
-
-— RULES SG & SS 00 —
-✦ WEAPON : SG ALL SKIN
-✦ WAKTU 00 : SG 1 ONLY
-✦ AKUN LEVEL 1 - 29 : WAJIB SS 00!
-✦ AKUN LEVEL 30 KE ATAS : BEBAS SS 00
-
-— DILARANG IN GAME —
-✦ DILARANG ATAP / LANTAI 2
-✦ DILARANG DMG TINJU / USP
-✦ DILARANG HELMET / VEST / GLOO WALL SAAT 00
-✦ DILARANG ZONA UNTUK MODE 11 & 22
-✦ DILARANG PAKAI CHAR CEWEK
-✦ DILARANG PAKAI BUNDLE :
-  • BUNDLE BALAP
-  • BUNDLE BENCONG
-  • BUNDLE HIU
-✦ DILARANG KOLONG CT
-✦ DILARANG SEPATU TERBANG / LOMPAT
-✦ DILARANG SCRIPT / REGE / CHEAT
-✦ DILARANG FF MOD / KIPAS
-✦ DILARANG SURCIN (SURCIN AUTO DISS!)
-✦ NOTE : AFK TIDAK DIANGGAP DISS
-
-— DIPERBOLEHKAN IN GAME —
-✦ BOLEH MACRO
-✦ BOLEH END ANIMASI
-✦ BOLEH BUNDLE BERUBAH
-✦ BOLEH MAIN ZONA UNTUK MODE 33 & 44
-✦ BOLEH TAUNTING / EMOTE
-
-— ATURAN KHUSUS IN MATCH —
-✦ BISA REMATCH JIKA :
-  • SALAH SKILL (JIKA BELUM ADA DMG)
-  • SALAH FORMAT ROOM (JIKA BELUM ADA DMG)
-  • TERPENTAL / CRASH DARI GAME
-  • MAX REMATCH : 3 ×
-✦ ALL PLAYER WAJIB SAVE REPLAY!
-✦ KETENTUAN BUKTI LAPORAN (DRAMA / ZONA / VIOLATION):
-  • WAJIB SEND REPLAY IN-GAME & REKAM LAYAR (RECORDING)!
-  • HANYA MENGIRIM BUKTI FOTO / SCREENSHOT = TIDAK VALID & AUTO DISS!
-  • PIHAK PELAPOR/TERLAPOR YANG TIDAK PUNYA BUKTI REPLAY & REC = AUTO DISS!
-✦ RASIO HS MAKSIMAL : 75%
-  • DILIHAT DARI STORY HS (JIKA LEBIH DARI 6 KILL = DISS!)
-✦ WAKTU TOLERANSI TERLAMBAT :
-  • 15 MENIT SETELAH ID ROOM DI-SEND
-  • 25 MENIT JIKA SHOLAT / KENDALA KHUSUS
-  • KENON / MATI LISTRIK LEBIH 25 MENIT = DIANGGAP DISS!
-
-— NOTE PENTING —
-✦ KEPUTUSAN ADMIN ADALAH MUTLAK!
-✦ TIDAK SESUAI RULES = DIPASTIKAN DISS NO C3!
-✦ RULES FT CS DI TIAP ADMIN BERBEDA, JADI JANGAN DIBANDINGKAN DENGAN RULES MANAPUN.
-✦ MOHON HARGAI DAN PATUHI RULES YANG ADA.</div>
+✦ DAMAGE SAAT JATUH : ON</div>
             <button class="action-btn" id="copy-rules-btn">Salin Rules Turnamen</button>
         </div>
 
-        <!-- Tab WD -->
         <div class="glass-card" id="tab-wd">
             <h1>Klaim Kemenangan & Penarikan (WD)</h1>
-            <p>Silakan login Google terlebih dahulu untuk mengakses menu penarikan saldo kemenangan.</p>
+            <p>Silakan login Google untuk klaim saldo kemenangan.</p>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script type="module" src="auth.js"></script>
 </body>
 </html>
+
