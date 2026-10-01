@@ -1,7 +1,3 @@
-/* ==========================================
-   ZHEE FASTOUR CS - CUSTOM STYLESHEET
-   ========================================== */
-
 :root {
     --bg-color: #0b0f19;
     --card-bg: rgba(17, 24, 39, 0.75);
@@ -14,56 +10,328 @@
     --success: #10b981;
 }
 
-/* Animasi Halus Saat Load */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.glass-card {
-    animation: fadeIn 0.5s ease-out forwards;
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 40%);
+    background-attachment: fixed;
+    padding-bottom: 50px;
 }
 
-/* Custom Scrollbar ala Discord */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-color);
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Status Indikator Live */
-.live-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--success);
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.75rem;
+/* Dynamic Island Notification */
+#dynamic-island {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
     font-weight: 600;
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    z-index: 2000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    white-space: nowrap;
 }
 
-.pulse-dot {
+#dynamic-island.show {
+    top: 20px;
+}
+
+.island-dot {
     width: 6px;
     height: 6px;
     background-color: var(--success);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--success);
-    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 6px var(--success);
 }
 
-@keyframes pulse {
-    0% { transform: scale(0.95); opacity: 0.8; }
-    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--success); }
-    100% { transform: scale(0.95); opacity: 0.8; }
+/* Header Kapsul */
+.capsule-header-wrapper {
+    position: fixed;
+    top: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    padding: 0 16px;
 }
+
+.capsule-header {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    padding: 8px 18px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-btn {
+    background: rgba(99, 102, 241, 0.2);
+    color: #818cf8;
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.login-btn.logged-in {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Sidebar Drawer */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100%;
+    background: rgba(11, 15, 25, 0.95);
+    backdrop-filter: blur(25px);
+    border-left: 1px solid var(--border-glass);
+    z-index: 1100;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 90px 20px 20px 20px;
+    box-shadow: -20px 0 50px rgba(0,0,0,0.6);
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar h3 {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-menu button, .submenu-toggle {
+    width: 100%;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-menu button:hover, .submenu-toggle:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.sidebar-menu button.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.submenu-container {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 15px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-left: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.submenu-container.show {
+    display: flex;
+}
+
+.submenu-btn {
+    background: rgba(255, 255, 255, 0.01) !important;
+    font-size: 0.85rem !important;
+    padding: 10px 14px !important;
+}
+
+.container {
+    max-width: 800px;
+    margin: 100px auto 0 auto;
+    padding: 0 20px;
+}
+
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.glass-card.active-tab {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 30%, #9ca3af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p, pre {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.rules-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-glass);
+    padding: 16px;
+    border-radius: 12px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    color: #d1d5db;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.action-btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.action-btn:hover {
+    background: var(--primary-hover);
+}
+
+.fee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.fee-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-glass);
+    padding: 18px;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.fee-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.fee-card h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.fee-card .pool {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--success);
+    margin-bottom: 8px;
+}
+
+.fee-card span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+       }
