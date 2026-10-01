@@ -37,7 +37,6 @@
             padding-bottom: 50px;
         }
 
-        /* Dynamic Island Notification (Smooth & Modern) */
         #dynamic-island {
             position: fixed;
             top: -60px;
@@ -45,7 +44,6 @@
             transform: translateX(-50%);
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #fff;
             padding: 8px 18px;
@@ -53,7 +51,7 @@
             font-size: 0.8rem;
             font-weight: 600;
             z-index: 2000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -74,7 +72,6 @@
             box-shadow: 0 0 6px var(--success);
         }
 
-        /* Header Kapsul */
         .capsule-header-wrapper {
             position: fixed;
             top: 15px;
@@ -89,7 +86,6 @@
         .capsule-header {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-glass);
             padding: 8px 18px;
             border-radius: 9999px;
@@ -98,7 +94,7 @@
             justify-content: space-between;
             width: 100%;
             max-width: 650px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .logo-area {
@@ -136,9 +132,10 @@
             transition: all 0.2s ease;
         }
 
-        .login-btn:hover {
-            background: var(--primary);
-            color: #fff;
+        .login-btn.logged-in {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            border-color: rgba(16, 185, 129, 0.4);
         }
 
         .menu-toggle {
@@ -147,27 +144,22 @@
             color: #fff;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: transform 0.2s;
         }
 
-        .menu-toggle:active {
-            transform: scale(0.9);
-        }
-
-        /* Sidebar Drawer (Smooth Slide) */
         .sidebar {
             position: fixed;
             top: 0;
             right: -300px;
             width: 280px;
             height: 100%;
-            background: rgba(11, 15, 25, 0.92);
+            background: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(25px);
             border-left: 1px solid var(--border-glass);
             z-index: 1100;
             transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 90px 20px 20px 20px;
             box-shadow: -20px 0 50px rgba(0,0,0,0.6);
+            overflow-y: auto;
         }
 
         .sidebar.active {
@@ -189,7 +181,7 @@
             gap: 8px;
         }
 
-        .sidebar-menu button {
+        .sidebar-menu button, .submenu-toggle {
             width: 100%;
             text-align: left;
             background: rgba(255, 255, 255, 0.02);
@@ -201,9 +193,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .sidebar-menu button:hover {
+        .sidebar-menu button:hover, .submenu-toggle:hover {
             background: rgba(99, 102, 241, 0.15);
             border-color: rgba(99, 102, 241, 0.4);
         }
@@ -214,7 +209,26 @@
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
-        /* Container & Smooth Fade Tab Animation */
+        .submenu-container {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            padding-left: 15px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            border-left: 2px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .submenu-container.show {
+            display: flex;
+        }
+
+        .submenu-btn {
+            background: rgba(255, 255, 255, 0.01) !important;
+            font-size: 0.85rem !important;
+            padding: 10px 14px !important;
+        }
+
         .container {
             max-width: 800px;
             margin: 100px auto 0 auto;
@@ -224,7 +238,6 @@
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-glass);
             border-radius: 20px;
             padding: 24px;
@@ -251,14 +264,42 @@
             -webkit-text-fill-color: transparent;
         }
 
-        p {
+        p, pre {
             color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 15px;
         }
 
-        /* Fee Grid Cards */
+        .rules-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-glass);
+            padding: 16px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            color: #d1d5db;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-hover);
+        }
+
         .fee-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -301,9 +342,10 @@
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Dynamic Island Notification Bar -->
+    <!-- Dynamic Island Notification -->
     <div id="dynamic-island">
         <div class="island-dot"></div>
         <span id="island-text">Sistem Fastour siap digunakan</span>
@@ -323,14 +365,25 @@
         </header>
     </div>
 
-    <!-- Sidebar Drawer Menu -->
+    <!-- Sidebar Drawer Menu dengan Dropdown Book -->
     <div class="sidebar" id="sidebar">
         <h3>Navigasi Menu</h3>
         <ul class="sidebar-menu">
             <li><button class="tab-btn active" data-target="tab-home">Dashboard</button></li>
-            <li><button class="tab-btn" data-target="tab-fee1">Fee 1 (Pool 3k)</button></li>
-            <li><button class="tab-btn" data-target="tab-fee2">Fee 2 (Pool 6k)</button></li>
-            <li><button class="tab-btn" data-target="tab-fee3">Fee 3 (Pool 9k)</button></li>
+            
+            <!-- Menu Dropdown Book / Jadwal Open -->
+            <li>
+                <div class="submenu-toggle" id="book-dropdown-toggle">
+                    <span>Jadwal Open / Book</span>
+                    <span id="arrow-icon">▼</span>
+                </div>
+                <div class="submenu-container" id="book-submenu">
+                    <button class="tab-btn submenu-btn" data-target="tab-fee1">Fee 1 (Pool 3k)</button>
+                    <button class="tab-btn submenu-btn" data-target="tab-fee2">Fee 2 (Pool 6k)</button>
+                    <button class="tab-btn submenu-btn" data-target="tab-fee3">Fee 3 (Pool 9k)</button>
+                </div>
+            </li>
+
             <li><button class="tab-btn" data-target="tab-rules">Rules Turnamen</button></li>
             <li><button class="tab-btn" data-target="tab-wd">Klaim Win / WD</button></li>
         </ul>
@@ -351,22 +404,22 @@
             <h1>Fee 1 - Poolprize 3K</h1>
             <p>Pilih mode pertandingan di bawah ini untuk melihat ketersediaan 10 room aktif:</p>
             <div class="fee-grid">
-                <div class="fee-card" onclick="showNotification('Membuka Fee 1 - Mode 1v1')">
+                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 1v1 Dipilih')">
                     <h3>Mode 1v1</h3>
                     <div class="pool">3K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 1 - Mode 2v2')">
+                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 2v2 Dipilih')">
                     <h3>Mode 2v2</h3>
                     <div class="pool">3K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 1 - Mode 3v3')">
+                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 3v3 Dipilih')">
                     <h3>Mode 3v3</h3>
                     <div class="pool">3K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 1 - Mode 4v4')">
+                <div class="fee-card" onclick="showNotification('Fee 1 - Mode 4v4 Dipilih')">
                     <h3>Mode 4v4</h3>
                     <div class="pool">3K IDR</div>
                     <span>10 Room Tersedia</span>
@@ -379,22 +432,22 @@
             <h1>Fee 2 - Poolprize 6K</h1>
             <p>Pilih mode pertandingan di bawah ini untuk melihat ketersediaan 10 room aktif:</p>
             <div class="fee-grid">
-                <div class="fee-card" onclick="showNotification('Membuka Fee 2 - Mode 1v1')">
+                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 1v1 Dipilih')">
                     <h3>Mode 1v1</h3>
                     <div class="pool">6K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 2 - Mode 2v2')">
+                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 2v2 Dipilih')">
                     <h3>Mode 2v2</h3>
                     <div class="pool">6K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 2 - Mode 3v3')">
+                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 3v3 Dipilih')">
                     <h3>Mode 3v3</h3>
                     <div class="pool">6K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 2 - Mode 4v4')">
+                <div class="fee-card" onclick="showNotification('Fee 2 - Mode 4v4 Dipilih')">
                     <h3>Mode 4v4</h3>
                     <div class="pool">6K IDR</div>
                     <span>10 Room Tersedia</span>
@@ -407,22 +460,22 @@
             <h1>Fee 3 - Poolprize 9K</h1>
             <p>Pilih mode pertandingan di bawah ini untuk melihat ketersediaan 10 room aktif:</p>
             <div class="fee-grid">
-                <div class="fee-card" onclick="showNotification('Membuka Fee 3 - Mode 1v1')">
+                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 1v1 Dipilih')">
                     <h3>Mode 1v1</h3>
                     <div class="pool">9K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 3 - Mode 2v2')">
+                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 2v2 Dipilih')">
                     <h3>Mode 2v2</h3>
                     <div class="pool">9K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 3 - Mode 3v3')">
+                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 3v3 Dipilih')">
                     <h3>Mode 3v3</h3>
                     <div class="pool">9K IDR</div>
                     <span>10 Room Tersedia</span>
                 </div>
-                <div class="fee-card" onclick="showNotification('Membuka Fee 3 - Mode 4v4')">
+                <div class="fee-card" onclick="showNotification('Fee 3 - Mode 4v4 Dipilih')">
                     <h3>Mode 4v4</h3>
                     <div class="pool">9K IDR</div>
                     <span>10 Room Tersedia</span>
@@ -433,7 +486,79 @@
         <!-- Tab Rules -->
         <div class="glass-card" id="tab-rules">
             <h1>Rules FT CS by Zhefanya</h1>
-            <p>Peraturan lengkap turnamen akan segera ditampilkan rapi di sini.</p>
+            <div class="rules-box" id="rules-text">✨ RULES FT CS BY ZHEFANYA ✨
+
+— FORMAT ROOM —
+✦ MODE : CRAZY STORE
+✦ DEFAULT COIN : 1.500
+✦ ROUND : 13
+✦ AMMO TERBATAS : OFF
+✦ DAMAGE SAAT JATUH : ON
+✦ AIRDROP : OFF
+✦ ATRIBUT SENJATA : ON
+✦ LOADOUT : OFF
+✦ BATAS THROWABLE : OFF
+
+— RULES PET —
+✦ PET : FALCO & PANTHER ONLY
+✦ SELAIN PET DI ATAS WAJIB DIKOSONGKAN!
+✦ TEMPLATE SKILL NO PET :
+#FF#YnlnZ39yZ359aXNtbXB0eWVtd2JwfnVvcmR/cWd/
+
+— RULES SG & SS 00 —
+✦ WEAPON : SG ALL SKIN
+✦ WAKTU 00 : SG 1 ONLY
+✦ AKUN LEVEL 1 - 29 : WAJIB SS 00!
+✦ AKUN LEVEL 30 KE ATAS : BEBAS SS 00
+
+— DILARANG IN GAME —
+✦ DILARANG ATAP / LANTAI 2
+✦ DILARANG DMG TINJU / USP
+✦ DILARANG HELMET / VEST / GLOO WALL SAAT 00
+✦ DILARANG ZONA UNTUK MODE 11 & 22
+✦ DILARANG PAKAI CHAR CEWEK
+✦ DILARANG PAKAI BUNDLE :
+  • BUNDLE BALAP
+  • BUNDLE BENCONG
+  • BUNDLE HIU
+✦ DILARANG KOLONG CT
+✦ DILARANG SEPATU TERBANG / LOMPAT
+✦ DILARANG SCRIPT / REGE / CHEAT
+✦ DILARANG FF MOD / KIPAS
+✦ DILARANG SURCIN (SURCIN AUTO DISS!)
+✦ NOTE : AFK TIDAK DIANGGAP DISS
+
+— DIPERBOLEHKAN IN GAME —
+✦ BOLEH MACRO
+✦ BOLEH END ANIMASI
+✦ BOLEH BUNDLE BERUBAH
+✦ BOLEH MAIN ZONA UNTUK MODE 33 & 44
+✦ BOLEH TAUNTING / EMOTE
+
+— ATURAN KHUSUS IN MATCH —
+✦ BISA REMATCH JIKA :
+  • SALAH SKILL (JIKA BELUM ADA DMG)
+  • SALAH FORMAT ROOM (JIKA BELUM ADA DMG)
+  • TERPENTAL / CRASH DARI GAME
+  • MAX REMATCH : 3 ×
+✦ ALL PLAYER WAJIB SAVE REPLAY!
+✦ KETENTUAN BUKTI LAPORAN (DRAMA / ZONA / VIOLATION):
+  • WAJIB SEND REPLAY IN-GAME & REKAM LAYAR (RECORDING)!
+  • HANYA MENGIRIM BUKTI FOTO / SCREENSHOT = TIDAK VALID & AUTO DISS!
+  • PIHAK PELAPOR/TERLAPOR YANG TIDAK PUNYA BUKTI REPLAY & REC = AUTO DISS!
+✦ RASIO HS MAKSIMAL : 75%
+  • DILIHAT DARI STORY HS (JIKA LEBIH DARI 6 KILL = DISS!)
+✦ WAKTU TOLERANSI TERLAMBAT :
+  • 15 MENIT SETELAH ID ROOM DI-SEND
+  • 25 MENIT JIKA SHOLAT / KENDALA KHUSUS
+  • KENON / MATI LISTRIK LEBIH 25 MENIT = DIANGGAP DISS!
+
+— NOTE PENTING —
+✦ KEPUTUSAN ADMIN ADALAH MUTLAK!
+✦ TIDAK SESUAI RULES = DIPASTIKAN DISS NO C3!
+✦ RULES FT CS DI TIAP ADMIN BERBEDA, JADI JANGAN DIBANDINGKAN DENGAN RULES MANAPUN.
+✦ MOHON HARGAI DAN PATUHI RULES YANG ADA.</div>
+            <button class="action-btn" id="copy-rules-btn">Salin Rules Turnamen</button>
         </div>
 
         <!-- Tab WD -->
@@ -443,58 +568,63 @@
         </div>
     </div>
 
-    <!-- Script Interaktif (Smooth & Dynamic Island) -->
+    <!-- Script Interaktif -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.getElementById('sidebar');
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabs = document.querySelectorAll('.glass-card');
         const googleLoginBtn = document.getElementById('google-login-btn');
+        
+        const bookToggle = document.getElementById('book-dropdown-toggle');
+        const bookSubmenu = document.getElementById('book-submenu');
+        const arrowIcon = document.getElementById('arrow-icon');
 
-        // Dynamic Island Notification Function
         function showNotification(text) {
             const island = document.getElementById('dynamic-island');
             const islandText = document.getElementById('island-text');
-            
             islandText.textContent = text;
             island.classList.add('show');
-            
-            setTimeout(() => {
-                island.classList.remove('show');
-            }, 3000);
+            setTimeout(() => { island.classList.remove('show'); }, 3000);
         }
 
-        // Toggle Sidebar
         menuBtn.addEventListener('click', () => {
             sidebar.classList.toggle('active');
         });
 
-        // Tab Navigation dengan Smooth Fade
+        bookToggle.addEventListener('click', () => {
+            bookSubmenu.classList.toggle('show');
+            arrowIcon.style.transform = bookSubmenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const target = btn.getAttribute('data-target');
 
-                tabBtns.exports = tabBtns.forEach(b => b.classList.remove('active'));
+                tabBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 tabs.forEach(t => t.classList.remove('active-tab'));
-                
                 setTimeout(() => {
                     document.getElementById(target).classList.add('active-tab');
                 }, 100);
 
                 sidebar.classList.remove('active');
-                showNotification(`Beralih ke menu: ${btn.textContent}`);
+                showNotification(`Membuka: ${btn.textContent}`);
             });
         });
 
-        // Simulasi Login Google
         googleLoginBtn.addEventListener('click', () => {
-            showNotification('Berhasil terhubung ke akun Google Zhee Store!');
-            googleLoginBtn.textContent = 'Fanya (Online)';
-            googleLoginBtn.style.background = 'rgba(16, 185, 129, 0.2)';
-            googleLoginBtn.style.color = '#34d399';
-            googleLoginBtn.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+            googleLoginBtn.textContent = 'Fanya';
+            googleLoginBtn.classList.add('logged-in');
+            showNotification('Berhasil terhubung ke akun Google!');
+        });
+
+        document.getElementById('copy-rules-btn').addEventListener('click', () => {
+            const rulesText = document.getElementById('rules-text').textContent;
+            navigator.clipboard.writeText(rulesText).then(() => {
+                showNotification('Rules berhasil disalin ke clipboard!');
+            });
         });
     </script>
 </body>
