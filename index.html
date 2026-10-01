@@ -220,19 +220,133 @@
             </div>
         </div>
 
-        <!-- TAB RULES (Bersih, Hanya Template Skill yang Bisa Disalin) -->
+               <!-- TAB RULES (Lengkap & Profesional) -->
         <div class="glass-card" id="tab-rules">
             <h1>Rules FT CS By Zhefanya</h1>
             <p>Harap baca dan patuhi seluruh peraturan di bawah ini sebelum bertanding.</p>
-            <div class="rules-card-block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:16px; border-radius:12px; margin-top:15px;">
-                <h3>🐶 RULES PET & AKUN</h3>
-                <p style="font-size:0.85rem; margin-bottom:8px;">Template Skill No Pet (Klik kotak untuk salin preset skill):</p>
-                <div class="copy-skill-box" id="skill-template" onclick="copySkillTemplate()" style="background:rgba(0,0,0,0.4); border:1px dashed rgba(99,102,241,0.5); padding:12px; border-radius:8px; font-family:monospace; font-size:0.75rem; color:#818cf8; word-break:break-all; cursor:pointer;">
+
+            <!-- 1. FORMAT ROOM -->
+            <div class="rules-section-title" style="color:#6366f1; margin-top:15px; font-weight:700; font-size:0.9rem;">— FORMAT ROOM —</div>
+            <div class="rules-grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:15px;">
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Mode</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">Crazy Store</div>
+                </div>
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Default Coin</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">1.500</div>
+                </div>
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Round</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">13 Round</div>
+                </div>
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Ammo Terbatas</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">OFF</div>
+                </div>
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Damage Jatuh</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">ON</div>
+                </div>
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Airdrop</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">OFF</div>
+                </div>
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Atribut Senjata</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">ON</div>
+                </div>
+                <div class="rule-box-item" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Loadout</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">OFF</div>
+                </div>
+                <div class="rule-box-item" style="grid-column: span 2; background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:10px 12px; border-radius:10px;">
+                    <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Batas Throwable</div>
+                    <div style="font-size:0.8rem; font-weight:700; color:#fff;">OFF</div>
+                </div>
+            </div>
+
+            <!-- 2. RULES PET & TEMPLATE -->
+            <div class="rules-card-block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:14px; border-radius:12px; margin-bottom:15px;">
+                <h3 style="font-size:0.9rem; color:#fff; margin-bottom:8px;">— RULES PET —</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:6px;">✦ PET: <b>FALCO & PANTHER ONLY</b></p>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">✦ Selain pet di atas WAJIB dikosongkan!</p>
+                <p style="font-size:0.75rem; color:#818cf8; margin-bottom:4px;">✦ Template Skill No Pet (Klik kotak untuk salin):</p>
+                <div class="copy-skill-box" id="skill-template" onclick="copySkillTemplate()" style="background:rgba(0,0,0,0.4); border:1px dashed rgba(99,102,241,0.5); padding:10px; border-radius:8px; font-family:monospace; font-size:0.7rem; color:#818cf8; word-break:break-all; cursor:pointer;">
                     #FF#YnlnZ39yZ359aXNtbXB0eWVtd2JwfnVvcmR/cWd/
                 </div>
             </div>
-        </div>
 
+            <!-- 3. RULES SG & SS 00 -->
+            <div class="rules-card-block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:14px; border-radius:12px; margin-bottom:15px;">
+                <h3 style="font-size:0.9rem; color:#fff; margin-bottom:8px;">— RULES SG & SS 00 —</h3>
+                <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+                    <li>✦ WEAPON: SG Allskin</li>
+                    <li>✦ WAKTU 00: SG 1 Only</li>
+                    <li>✦ AKUN LEVEL 1 - 29: Wajib SS 00!</li>
+                    <li>✦ AKUN LEVEL 30 KE ATAS: Bebas SS 00</li>
+                </ul>
+            </div>
+
+            <!-- 4. DILARANG IN GAME -->
+            <div class="rules-card-block" style="background:rgba(239,68,68,0.03); border:1px solid rgba(239,68,68,0.2); padding:14px; border-radius:12px; margin-bottom:15px;">
+                <h3 style="font-size:0.9rem; color:#fca5a5; margin-bottom:8px;">— DILARANG IN GAME —</h3>
+                <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+                    <li>❌ Dilarang Atap / Lantai 2</li>
+                    <li>❌ Dilarang DMG Tinju / USP</li>
+                    <li>❌ Dilarang Helmet / Vest / Gloo Wall saat 00</li>
+                    <li>❌ Dilarang Zona untuk Mode 1v1 & 2v2</li>
+                    <li>❌ Dilarang Pakai Char Cewek</li>
+                    <li>❌ Dilarang Pakai Bundle: Balap, Bencong, Hiu</li>
+                    <li>❌ Dilarang Kolong CT</li>
+                    <li>❌ Dilarang Sepatu Terbang / Lompat</li>
+                    <li>❌ Dilarang Script / Rege / Cheat</li>
+                    <li>❌ Dilarang FF Mod / Kipas</li>
+                    <li>❌ Dilarang Surcin (Surcin Auto Diss!)</li>
+                    <li style="color:#fff; font-size:0.75rem; margin-top:4px;">💡 Note: AFK tidak dianggap DISS</li>
+                </ul>
+            </div>
+
+            <!-- 5. DIPERBOLEHKAN IN GAME -->
+            <div class="rules-card-block" style="background:rgba(16,185,129,0.03); border:1px solid rgba(16,185,129,0.2); padding:14px; border-radius:12px; margin-bottom:15px;">
+                <h3 style="font-size:0.9rem; color:#34d399; margin-bottom:8px;">— DIPERBOLEHKAN IN GAME —</h3>
+                <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+                    <li>✅ Boleh Macro</li>
+                    <li>✅ Boleh End Animasi</li>
+                    <li>✅ Boleh Bundle Berubah</li>
+                    <li>✅ Boleh Main Zona untuk Mode 3v3 & 4v4</li>
+                    <li>✅ Boleh Taunting / Emote</li>
+                </ul>
+            </div>
+
+            <!-- 6. ATURAN KHUSUS IN MATCH -->
+            <div class="rules-card-block" style="background:rgba(245,158,11,0.03); border:1px solid rgba(245,158,11,0.2); padding:14px; border-radius:12px; margin-bottom:15px;">
+                <h3 style="font-size:0.9rem; color:#fcd34d; margin-bottom:8px;">— ATURAN KHUSUS IN MATCH —</h3>
+                <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); display:flex; flex-direction:column; gap:8px;">
+                    <li>🔸 <b>Bisa Rematch Jika:</b> Salah skill (belum ada DMG), salah format room (belum ada DMG), atau terpental/crash dari game. (Max Rematch: 3x)</li>
+                    <li>🔸 <b>Save Replay:</b> ALL Player WAJIB save replay!</li>
+                    <li>🔸 <b>Bukti Laporan (Drama/Zona/Violation):</b> Wajib send replay in-game & rekaman layar (recording)! Kirim foto/screenshot = Tidak valid & Auto Diss!</li>
+                    <li>🔸 <b>Rasio HS Maksimal:</b> 75% (Dilihat dari Story HS, jika > 6 kill = Diss!).</li>
+                    <li>🔸 <b>Waktu Toleransi Terlambat:</b>
+                        <br>• 15 menit setelah ID Room di-send
+                        <br>• 25 menit jika sholat / kendala khusus
+                        <br>• Kenon / mati listrik > 25 menit = Dianggap Diss!
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 7. NOTE PENTING -->
+            <div class="rules-card-block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:14px; border-radius:12px;">
+                <h3 style="font-size:0.9rem; color:#fff; margin-bottom:8px;">— NOTE PENTING —</h3>
+                <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+                    <li>📌 Keputusan Admin adalah Mutlak!</li>
+                    <li>📌 Tidak sesuai rules = Dipastikan DISS NO C3!</li>
+                    <li>📌 Rules FT CS di tiap admin berbeda, jangan dibandingkan dengan rules manapun.</li>
+                    <li>📌 Mohon hargai dan patuhi rules yang ada.</li>
+                </ul>
+            </div>
+        </div>
+        
         <!-- TAB KLAIM WIN -->
         <div class="glass-card" id="tab-wd">
             <h1>Klaim Kemenangan (Klaim Win)</h1>
