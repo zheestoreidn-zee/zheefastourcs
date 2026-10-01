@@ -17,14 +17,21 @@ const provider = new GoogleAuthProvider();
 const OWNER_EMAIL = "zheestoreidn@gmail.com";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const googleLoginBtn = document.getElementById('google-login-btn');
+    const userProfileBtn = document.getElementById('user-profile-btn');
     const floatingAdminBtn = document.getElementById('floating-admin-btn');
+    const profileModal = document.getElementById('profile-modal');
+    const closeProfileModal = document.getElementById('close-profile-modal');
+    const savePaymentBtn = document.getElementById('save-payment-btn');
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userName = user.displayName ? user.displayName.split(' ')[0] : 'Fanya';
-            googleLoginBtn.textContent = userName;
-            googleLoginBtn.classList.add('logged-in');
+            const userPhoto = user.photoURL || 'https://via.placeholder.com/30';
+            
+            userProfileBtn.innerHTML = `
+                <img src="${userPhoto}" alt="PP">
+                <span>${userName}</span>
+            `;
 
             if (user.email === OWNER_EMAIL) {
                 if (floatingAdminBtn) floatingAdminBtn.style.display = 'flex';
@@ -32,23 +39,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (floatingAdminBtn) floatingAdminBtn.style.display = 'none';
             }
         } else {
-            googleLoginBtn.textContent = 'Login Google';
-            googleLoginBtn.classList.remove('logged-in');
+            userProfileBtn.innerHTML = `
+                <img src="https://api.iconify.design/solar:user-bold.svg?color=%23818cf8" alt="User">
+                <span>Login</span>
+            `;
             if (floatingAdminBtn) floatingAdminBtn.style.display = 'none';
         }
     });
 
-    googleLoginBtn.addEventListener('click', () => {
+    userProfileBtn.addEventListener('click', () => {
         if (auth.currentUser) {
-            signOut(auth).then(() => {
-                alert("Berhasil keluar akun.");
-            });
+            // Buka modal edit profil & pembayaran
+            if(profileModal) profileModal.classList.add('show');
         } else {
             signInWithPopup(auth, provider).catch((error) => {
                 console.error("Gagal Login:", error);
-                alert("Gagal login. Pastikan domain Vercel sudah terdaftar di Firebase Authorized Domains.");
+                alert("Gagal login Google.");
             });
         }
     });
+
+    if(closeProfileModal) {
+        closeProfileModal.addEventListener('click', () => {
+            profileModal.classList.remove('show');
+        });
+    }
+
+    if(savePaymentBtn) {
+        savePaymentBtn.addEventListener('click', () => {
+            const dana = document.getElementById('input-dana').value;
+            const rek = document.getElementById('input-rek').value;
+            localStorage.setItem('zhee_dana', dana);
+            localStorage.setItem('zhee_rek', rek);
+            profileModal.classList.remove('show');
+            if(window.showNotification) window.showNotification('Data pembayaran berhasil disimpan!');
+        });
+    }
 });
 
