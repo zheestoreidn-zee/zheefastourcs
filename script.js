@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const adminModal = document.getElementById('admin-modal');
     let adminOpen = false;
 
-    function showNotification(text) {
+    // Dynamic Island
+    window.showNotification = function(text) {
         const island = document.getElementById('dynamic-island');
         const islandText = document.getElementById('island-text');
         islandText.textContent = text;
@@ -59,17 +60,68 @@ document.addEventListener("DOMContentLoaded", () => {
         floatingBtn.addEventListener('click', () => {
             adminOpen = !adminOpen;
             if(adminModal) adminModal.classList.toggle('show', adminOpen);
-            floatingBtn.textContent = adminOpen ? '✕' : '+';
+            floatingBtn.classList.toggle('rotate', adminOpen);
         });
     }
 
-    const copyBtn = document.getElementById('copy-rules-btn');
-    if(copyBtn) {
-        copyBtn.addEventListener('click', () => {
-            const rulesText = document.getElementById('rules-text').textContent;
-            navigator.clipboard.writeText(rulesText).then(() => {
-                showNotification('Rules berhasil disalin ke clipboard!');
-            });
+    // Navigasi ke Daftar 10 Room saat Mode diklik
+    window.openRoomList = function(feeName, modeName) {
+        const modeView = document.getElementById(`mode-view-${feeName}`);
+        const roomView = document.getElementById(`room-view-${feeName}`);
+        const titleEl = document.getElementById(`room-title-${feeName}`);
+
+        if(modeView && roomView) {
+            modeView.style.display = 'none';
+            roomView.style.display = 'block';
+            titleEl.textContent = `Fee ${feeName.replace('fee','')} - ${modeName} (10 Room)`;
+            showNotification(`Membuka ${modeName} Fee ${feeName.replace('fee','')}`);
+        }
+    }
+
+    // Kembali ke Pilihan Mode
+    window.backToModeList = function(feeName) {
+        const modeView = document.getElementById(`mode-view-${feeName}`);
+        const roomView = document.getElementById(`room-view-${feeName}`);
+
+        if(modeView && roomView) {
+            roomView.style.display = 'none';
+            modeView.style.display = 'grid';
+        }
+    }
+
+    // Status Admin Fee & Sidebar Indikator
+    window.setAdminStatus = function(feeId, status) {
+        const btnOpen = document.getElementById(`${feeId}-open`);
+        const btnClose = document.getElementById(`${feeId}-close`);
+        const badge = document.getElementById(`${feeId}-badge`);
+        const sidebarBadge = document.getElementById(`${feeId}-side-badge`);
+
+        if(status === 'OPEN') {
+            btnOpen.className = 'toggle-btn active-open';
+            btnClose.className = 'toggle-btn';
+            if(badge) { badge.className = 'status-badge open'; badge.textContent = 'OPEN'; }
+            if(sidebarBadge) { sidebarBadge.className = 'mini-badge open'; sidebarBadge.textContent = 'OPEN'; }
+            showNotification(`Fee ${feeId.replace('fee','')} diubah menjadi OPEN`);
+        } else {
+            btnOpen.className = 'toggle-btn';
+            btnClose.className = 'toggle-btn active-close';
+            if(badge) { badge.className = 'status-badge close'; badge.textContent = 'CLOSE'; }
+            if(sidebarBadge) { sidebarBadge.className = 'mini-badge close'; sidebarBadge.textContent = 'CLOSE'; }
+            showNotification(`Fee ${feeId.replace('fee','')} diubah menjadi CLOSE`);
+        }
+    }
+
+    // Salin Template Skill
+    window.copySkillTemplate = function() {
+        navigator.clipboard.writeText("#FF#YnlnZ39yZ359aXNtbXB0eWVtd2JwfnVvcmR/cWd/").then(() => {
+            showNotification('Template skill berhasil disalin!');
+        });
+    }
+
+    const copyRulesBtn = document.getElementById('copy-rules-btn');
+    if(copyRulesBtn) {
+        copyRulesBtn.addEventListener('click', () => {
+            showNotification('Semua rules berhasil disalin!');
         });
     }
 });
