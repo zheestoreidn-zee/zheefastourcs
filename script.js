@@ -1,13 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     const menuBtn = document.getElementById('menu-btn');
     const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabs = document.querySelectorAll('.glass-card');
-    const googleLoginBtn = document.getElementById('google-login-btn');
     
     const bookToggle = document.getElementById('book-dropdown-toggle');
     const bookSubmenu = document.getElementById('book-submenu');
     const arrowIcon = document.getElementById('arrow-icon');
+
+    const floatingBtn = document.getElementById('floating-admin-btn');
+    const adminModal = document.getElementById('admin-modal');
+    let adminOpen = false;
 
     function showNotification(text) {
         const island = document.getElementById('dynamic-island');
@@ -17,14 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => { island.classList.remove('show'); }, 3000);
     }
 
-    menuBtn.addEventListener('click', () => {
+    function toggleSidebar() {
         sidebar.classList.toggle('active');
-    });
+        overlay.classList.toggle('active');
+    }
 
-    bookToggle.addEventListener('click', () => {
-        bookSubmenu.classList.toggle('show');
-        arrowIcon.style.transform = bookSubmenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
-    });
+    if(menuBtn) menuBtn.addEventListener('click', toggleSidebar);
+    if(overlay) overlay.addEventListener('click', toggleSidebar);
+
+    if(bookToggle) {
+        bookToggle.addEventListener('click', () => {
+            bookSubmenu.classList.toggle('show');
+            arrowIcon.style.transform = bookSubmenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+    }
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -35,19 +45,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             tabs.forEach(t => t.classList.remove('active-tab'));
             setTimeout(() => {
-                document.getElementById(target).classList.add('active-tab');
+                const targetEl = document.getElementById(target);
+                if(targetEl) targetEl.classList.add('active-tab');
             }, 50);
 
-            sidebar.classList.remove('active');
+            if(sidebar) sidebar.classList.remove('active');
+            if(overlay) overlay.classList.remove('active');
             showNotification(`Membuka: ${btn.textContent}`);
         });
     });
 
-    googleLoginBtn.addEventListener('click', () => {
-        googleLoginBtn.textContent = 'Fanya';
-        googleLoginBtn.classList.add('logged-in');
-        showNotification('Berhasil terhubung ke akun Google!');
-    });
+    if(floatingBtn) {
+        floatingBtn.addEventListener('click', () => {
+            adminOpen = !adminOpen;
+            if(adminModal) adminModal.classList.toggle('show', adminOpen);
+            floatingBtn.textContent = adminOpen ? '✕' : '+';
+        });
+    }
 
     const copyBtn = document.getElementById('copy-rules-btn');
     if(copyBtn) {
