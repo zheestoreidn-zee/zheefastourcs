@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const adminModal = document.getElementById('admin-modal');
     let adminOpen = false;
 
-    // Dynamic Island
     window.showNotification = function(text) {
         const island = document.getElementById('dynamic-island');
         const islandText = document.getElementById('island-text');
@@ -64,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Navigasi ke Daftar 10 Room saat Mode diklik
     window.openRoomList = function(feeName, modeName) {
         const modeView = document.getElementById(`mode-view-${feeName}`);
         const roomView = document.getElementById(`room-view-${feeName}`);
@@ -78,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Kembali ke Pilihan Mode
     window.backToModeList = function(feeName) {
         const modeView = document.getElementById(`mode-view-${feeName}`);
         const roomView = document.getElementById(`room-view-${feeName}`);
@@ -89,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Status Admin Fee & Sidebar Indikator
     window.setAdminStatus = function(feeId, status) {
         const btnOpen = document.getElementById(`${feeId}-open`);
         const btnClose = document.getElementById(`${feeId}-close`);
@@ -111,17 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Salin Template Skill
+    // Salin Template Skill No Pet Khusus
     window.copySkillTemplate = function() {
         navigator.clipboard.writeText("#FF#YnlnZ39yZ359aXNtbXB0eWVtd2JwfnVvcmR/cWd/").then(() => {
-            showNotification('Template skill berhasil disalin!');
-        });
-    }
-
-    const copyRulesBtn = document.getElementById('copy-rules-btn');
-    if(copyRulesBtn) {
-        copyRulesBtn.addEventListener('click', () => {
-            showNotification('Semua rules berhasil disalin!');
+            showNotification('Template skill no pet berhasil disalin!');
         });
     }
 });
