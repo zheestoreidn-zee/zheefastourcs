@@ -1,35 +1,61 @@
-/* ==========================================
-   ZHEE FASTOUR CS - JAVASCRIPT LOGIC
-   ========================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Zhee Fastour CS Engine Loaded Successfully.");
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabs = document.querySelectorAll('.glass-card');
+    const googleLoginBtn = document.getElementById('google-login-btn');
+    
+    const bookToggle = document.getElementById('book-dropdown-toggle');
+    const bookSubmenu = document.getElementById('book-submenu');
+    const arrowIcon = document.getElementById('arrow-icon');
 
-    const actionBtn = document.getElementById("click-me-btn");
-    const statusCounter = document.getElementById("status-counter");
+    function showNotification(text) {
+        const island = document.getElementById('dynamic-island');
+        const islandText = document.getElementById('island-text');
+        islandText.textContent = text;
+        island.classList.add('show');
+        setTimeout(() => { island.classList.remove('show'); }, 3000);
+    }
 
-    if (actionBtn && statusCounter) {
-        let clickCount = 0;
-        
-        actionBtn.addEventListener("click", () => {
-            clickCount++;
-            const messages = [
-                "✅ Koneksi server stabil! CS Fastour siap melayani.",
-                "⚡ Slot turnamen kilat terpantau aktif dan lancar.",
-                "🔒 Sistem enkripsi aman dan terverifikasi tanpa bug.",
-                "🚀 Semua layanan berjalan di performa maksimal!"
-            ];
-            
-            // Ambil pesan secara bergantian tanpa error index out of bounds
-            const currentMessage = messages[(clickCount - 1) % messages.length];
-            statusCounter.textContent = `${currentMessage} (Verifikasi ke-${clickCount})`;
-            statusCounter.style.color = "#10b981";
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
 
-            // Efek kedip halus
-            statusCounter.style.opacity = "0.4";
+    bookToggle.addEventListener('click', () => {
+        bookSubmenu.classList.toggle('show');
+        arrowIcon.style.transform = bookSubmenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            tabs.forEach(t => t.classList.remove('active-tab'));
             setTimeout(() => {
-                statusCounter.style.opacity = "1";
-            }, 200);
+                document.getElementById(target).classList.add('active-tab');
+            }, 50);
+
+            sidebar.classList.remove('active');
+            showNotification(`Membuka: ${btn.textContent}`);
+        });
+    });
+
+    googleLoginBtn.addEventListener('click', () => {
+        googleLoginBtn.textContent = 'Fanya';
+        googleLoginBtn.classList.add('logged-in');
+        showNotification('Berhasil terhubung ke akun Google!');
+    });
+
+    const copyBtn = document.getElementById('copy-rules-btn');
+    if(copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const rulesText = document.getElementById('rules-text').textContent;
+            navigator.clipboard.writeText(rulesText).then(() => {
+                showNotification('Rules berhasil disalin ke clipboard!');
+            });
         });
     }
 });
