@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zhee Fastour CS - Official Platform</title>
+    <link rel="icon" type="image/png" href="logo-zs.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,15 +15,19 @@
         <span id="island-text">Sistem Fastour siap digunakan</span>
     </div>
 
+    <!-- Header Kapsul dengan Logo ZS dan PP Bulat -->
     <div class="capsule-header-wrapper">
         <header class="capsule-header">
             <div class="logo-area">
-                <div class="zs-badge">ZS</div>
+                <img src="logo-zs.png" alt="ZS" class="zs-logo-img">
                 <div class="live-dot"></div>
                 <span>ZHEE FASTOUR CS</span>
             </div>
             <div class="header-actions">
-                <button class="login-btn" id="google-login-btn">Login Google</button>
+                <button class="user-profile-btn" id="user-profile-btn">
+                    <img src="https://api.iconify.design/solar:user-bold.svg?color=%23818cf8" alt="User">
+                    <span>Login</span>
+                </button>
                 <button class="menu-toggle" id="menu-btn">☰</button>
             </div>
         </header>
@@ -30,6 +35,7 @@
 
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
+    <!-- Sidebar dengan Indikator Status & Klaim Win -->
     <div class="sidebar" id="sidebar">
         <h3>Navigasi Menu</h3>
         <ul class="sidebar-menu">
@@ -40,31 +46,69 @@
                     <span id="arrow-icon">▼</span>
                 </div>
                 <div class="submenu-container" id="book-submenu">
-                    <button class="tab-btn submenu-btn" data-target="tab-fee1">Fee 1 (Pool 3k)</button>
-                    <button class="tab-btn submenu-btn" data-target="tab-fee2">Fee 2 (Pool 6k)</button>
-                    <button class="tab-btn submenu-btn" data-target="tab-fee3">Fee 3 (Pool 9k)</button>
+                    <button class="tab-btn submenu-btn" data-target="tab-fee1">
+                        <span>Fee 1 (3k)</span>
+                        <span class="mini-badge open" id="fee1-side-badge">OPEN</span>
+                    </button>
+                    <button class="tab-btn submenu-btn" data-target="tab-fee2">
+                        <span>Fee 2 (6k)</span>
+                        <span class="mini-badge open" id="fee2-side-badge">OPEN</span>
+                    </button>
+                    <button class="tab-btn submenu-btn" data-target="tab-fee3">
+                        <span>Fee 3 (9k)</span>
+                        <span class="mini-badge open" id="fee3-side-badge">OPEN</span>
+                    </button>
                 </div>
             </li>
             <li><button class="tab-btn" data-target="tab-rules">Rules Turnamen</button></li>
-            <li><button class="tab-btn" data-target="tab-wd">Klaim Win / WD</button></li>
+            <li><button class="tab-btn" data-target="tab-wd">Klaim Win</button></li>
         </ul>
     </div>
 
     <button class="floating-admin-btn" id="floating-admin-btn">+</button>
 
+    <!-- Admin Panel Modal -->
     <div class="admin-modal" id="admin-modal">
         <h4>Panel Kontrol Admin</h4>
         <div class="admin-control-group">
             <label>Status Fee 1 (3K)</label>
-            <select class="admin-select"><option>Open</option><option>Close / Off</option></select>
+            <div class="toggle-switch-group">
+                <button class="toggle-btn active-open" id="fee1-open" onclick="setAdminStatus('fee1', 'OPEN')">OPEN</button>
+                <button class="toggle-btn" id="fee1-close" onclick="setAdminStatus('fee1', 'CLOSE')">CLOSE</button>
+            </div>
         </div>
         <div class="admin-control-group">
             <label>Status Fee 2 (6K)</label>
-            <select class="admin-select"><option>Open</option><option>Close / Off</option></select>
+            <div class="toggle-switch-group">
+                <button class="toggle-btn active-open" id="fee2-open" onclick="setAdminStatus('fee2', 'OPEN')">OPEN</button>
+                <button class="toggle-btn" id="fee2-close" onclick="setAdminStatus('fee2', 'CLOSE')">CLOSE</button>
+            </div>
         </div>
         <div class="admin-control-group">
             <label>Status Fee 3 (9K)</label>
-            <select class="admin-select"><option>Open</option><option>Close / Off</option></select>
+            <div class="toggle-switch-group">
+                <button class="toggle-btn active-open" id="fee3-open" onclick="setAdminStatus('fee3', 'OPEN')">OPEN</button>
+                <button class="toggle-btn" id="fee3-close" onclick="setAdminStatus('fee3', 'CLOSE')">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profil & Pembayaran Pemenang -->
+    <div class="profile-modal-overlay" id="profile-modal">
+        <div class="profile-modal-card">
+            <h3>Atur Akun & Pembayaran WD</h3>
+            <div class="form-group">
+                <label>Nomor DANA / OVO / GOPAY</label>
+                <input type="text" class="form-input" id="input-dana" placeholder="Contoh: 081234567890">
+            </div>
+            <div class="form-group">
+                <label>Nomor Rekening / Bank</label>
+                <input type="text" class="form-input" id="input-rek" placeholder="BCA / Mandiri / dll">
+            </div>
+            <div class="modal-btn-row">
+                <button class="action-btn" id="save-payment-btn" style="flex: 1;">Simpan</button>
+                <button class="back-mode-btn" id="close-profile-modal" style="flex: 1; margin:0;">Batal</button>
+            </div>
         </div>
     </div>
 
@@ -74,54 +118,114 @@
             <p>Platform resmi layanan turnamen kilat dan manajemen room berbasis sistem transparan.</p>
         </div>
 
+        <!-- TAB FEE 1 -->
         <div class="glass-card" id="tab-fee1">
             <h1>Fee 1 - Poolprize 3K</h1>
-            <p>Pilih mode pertandingan:</p>
-            <div class="fee-grid">
-                <div class="fee-card" onclick="alert('Mode 1v1 Dipilih')"><h3>Mode 1v1</h3><div class="pool">3K IDR</div><span class="status-badge open">OPEN</span></div>
-                <div class="fee-card" onclick="alert('Mode 2v2 Dipilih')"><h3>Mode 2v2</h3><div class="pool">3K IDR</div><span class="status-badge open">OPEN</span></div>
-                <div class="fee-card"><h3>Mode 3v3</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
-                <div class="fee-card"><h3>Mode 4v4</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
+            <div id="mode-view-fee1">
+                <p>Pilih mode pertandingan:</p>
+                <div class="fee-grid">
+                    <div class="fee-card" onclick="openRoomList('fee1', 'Mode 1v1')"><h3>Mode 1v1</h3><div class="pool">3K IDR</div><span class="status-badge open" id="fee1-badge">OPEN</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee1', 'Mode 2v2')"><h3>Mode 2v2</h3><div class="pool">3K IDR</div><span class="status-badge open" id="fee1-badge-2">OPEN</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee1', 'Mode 3v3')"><h3>Mode 3v3</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee1', 'Mode 4v4')"><h3>Mode 4v4</h3><div class="pool">3K IDR</div><span class="status-badge close">CLOSE</span></div>
+                </div>
+            </div>
+            <div id="room-view-fee1" style="display: none;">
+                <button class="back-mode-btn" onclick="backToModeList('fee1')">← Kembali ke Pilihan Mode</button>
+                <h3 id="room-title-fee1" style="font-size: 1rem; color: #fff; margin-bottom: 12px;">Daftar 10 Room</h3>
+                <div class="room-grid">
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 1...')"><h3>Room 1</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 2...')"><h3>Room 2</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 3...')"><h3>Room 3</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 4...')"><h3>Room 4</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 5...')"><h3>Room 5</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 6...')"><h3>Room 6</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 7...')"><h3>Room 7</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 8...')"><h3>Room 8</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 9...')"><h3>Room 9</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke Grup WA Room 10...')"><h3>Room 10</h3><span class="status-badge open">0/4 Slot</span></div>
+                </div>
             </div>
         </div>
 
+        <!-- TAB FEE 2 -->
         <div class="glass-card" id="tab-fee2">
             <h1>Fee 2 - Poolprize 6K</h1>
-            <p>Pilih mode pertandingan:</p>
-            <div class="fee-grid">
-                <div class="fee-card"><h3>Mode 1v1</h3><div class="pool">6K IDR</div><span class="status-badge open">OPEN</span></div>
-                <div class="fee-card"><h3>Mode 2v2</h3><div class="pool">6K IDR</div><span class="status-badge open">OPEN</span></div>
-                <div class="fee-card"><h3>Mode 3v3</h3><div class="pool">6K IDR</div><span class="status-badge close">CLOSE</span></div>
-                <div class="fee-card"><h3>Mode 4v4</h3><div class="pool">6K IDR</div><span class="status-badge close">CLOSE</span></div>
+            <div id="mode-view-fee2">
+                <p>Pilih mode pertandingan:</p>
+                <div class="fee-grid">
+                    <div class="fee-card" onclick="openRoomList('fee2', 'Mode 1v1')"><h3>Mode 1v1</h3><div class="pool">6K IDR</div><span class="status-badge open" id="fee2-badge">OPEN</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee2', 'Mode 2v2')"><h3>Mode 2v2</h3><div class="pool">6K IDR</div><span class="status-badge open">OPEN</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee2', 'Mode 3v3')"><h3>Mode 3v3</h3><div class="pool">6K IDR</div><span class="status-badge close">CLOSE</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee2', 'Mode 4v4')"><h3>Mode 4v4</h3><div class="pool">6K IDR</div><span class="status-badge close">CLOSE</span></div>
+                </div>
+            </div>
+            <div id="room-view-fee2" style="display: none;">
+                <button class="back-mode-btn" onclick="backToModeList('fee2')">← Kembali ke Pilihan Mode</button>
+                <h3 id="room-title-fee2" style="font-size: 1rem; color: #fff; margin-bottom: 12px;">Daftar 10 Room</h3>
+                <div class="room-grid">
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 1</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 2</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 3</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 4</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 5</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 6</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 7</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 8</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 9</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 10</h3><span class="status-badge open">0/4 Slot</span></div>
+                </div>
             </div>
         </div>
 
+        <!-- TAB FEE 3 -->
         <div class="glass-card" id="tab-fee3">
             <h1>Fee 3 - Poolprize 9K</h1>
-            <p>Pilih mode pertandingan:</p>
-            <div class="fee-grid">
-                <div class="fee-card"><h3>Mode 1v1</h3><div class="pool">9K IDR</div><span class="status-badge open">OPEN</span></div>
-                <div class="fee-card"><h3>Mode 2v2</h3><div class="pool">9K IDR</div><span class="status-badge open">OPEN</span></div>
-                <div class="fee-card"><h3>Mode 3v3</h3><div class="pool">9K IDR</div><span class="status-badge close">CLOSE</span></div>
-                <div class="fee-card"><h3>Mode 4v4</h3><div class="pool">9K IDR</div><span class="status-badge close">CLOSE</span></div>
+            <div id="mode-view-fee3">
+                <p>Pilih mode pertandingan:</p>
+                <div class="fee-grid">
+                    <div class="fee-card" onclick="openRoomList('fee3', 'Mode 1v1')"><h3>Mode 1v1</h3><div class="pool">9K IDR</div><span class="status-badge open" id="fee3-badge">OPEN</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee3', 'Mode 2v2')"><h3>Mode 2v2</h3><div class="pool">9K IDR</div><span class="status-badge open">OPEN</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee3', 'Mode 3v3')"><h3>Mode 3v3</h3><div class="pool">9K IDR</div><span class="status-badge close">CLOSE</span></div>
+                    <div class="fee-card" onclick="openRoomList('fee3', 'Mode 4v4')"><h3>Mode 4v4</h3><div class="pool">9K IDR</div><span class="status-badge close">CLOSE</span></div>
+                </div>
+            </div>
+            <div id="room-view-fee3" style="display: none;">
+                <button class="back-mode-btn" onclick="backToModeList('fee3')">← Kembali ke Pilihan Mode</button>
+                <h3 id="room-title-fee3" style="font-size: 1rem; color: #fff; margin-bottom: 12px;">Daftar 10 Room</h3>
+                <div class="room-grid">
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 1</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 2</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 3</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 4</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 5</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 6</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 7</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 8</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 9</h3><span class="status-badge open">0/4 Slot</span></div>
+                    <div class="room-item" onclick="showNotification('Mengarahkan ke WA...')"><h3>Room 10</h3><span class="status-badge open">0/4 Slot</span></div>
+                </div>
             </div>
         </div>
 
+        <!-- TAB RULES -->
         <div class="glass-card" id="tab-rules">
-            <h1>Rules FT CS by Zhefanya</h1>
-            <div class="rules-box" id="rules-text">✨ RULES FT CS BY ZHEFANYA ✨
-— FORMAT ROOM —
-✦ MODE : CRAZY STORE
-✦ DEFAULT COIN : 1.500
-✦ ROUND : 13
-✦ AMMO TERBATAS : OFF
-✦ DAMAGE SAAT JATUH : ON</div>
-            <button class="action-btn" id="copy-rules-btn">Salin Rules Turnamen</button>
+            <h1>Rules FT CS By Zhefanya</h1>
+            <p>Harap baca dan patuhi seluruh peraturan di bawah ini sebelum bertanding.</p>
+            <div class="rules-card-block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); padding:16px; border-radius:12px; margin-bottom:15px;">
+                <h3>🐶 RULES PET & AKUN</h3>
+                <p style="font-size:0.85rem; margin-bottom:8px;">Template Skill No Pet (Klik untuk salin):</p>
+                <div class="copy-skill-box" id="skill-template" onclick="copySkillTemplate()" style="background:rgba(0,0,0,0.4); border:1px dashed rgba(99,102,241,0.5); padding:10px; border-radius:8px; font-family:monospace; font-size:0.75rem; color:#818cf8; word-break:break-all; cursor:pointer;">
+                    #FF#YnlnZ39yZ359aXNtbXB0eWVtd2JwfnVvcmR/cWd/
+                </div>
+            </div>
+            <button class="action-btn" id="copy-rules-btn" style="width:100%;">Salin Semua Rules</button>
         </div>
 
+        <!-- TAB KLAIM WIN -->
         <div class="glass-card" id="tab-wd">
-            <h1>Klaim Kemenangan & Penarikan (WD)</h1>
-            <p>Silakan login Google untuk klaim saldo kemenangan.</p>
+            <h1>Klaim Kemenangan (Klaim Win)</h1>
+            <p>Silakan login Google dan pastikan data nomor pembayaran Anda sudah diatur melalui tombol profil di kanan atas.</p>
         </div>
     </div>
 
@@ -129,4 +233,3 @@
     <script type="module" src="auth.js"></script>
 </body>
 </html>
-
